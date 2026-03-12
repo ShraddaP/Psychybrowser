@@ -15,8 +15,6 @@
 #include <intrin.h>
 #include <windows.h>
 
-#include <ostream>
-
 #include "base/check_op.h"
 #include "client/crashpad_client.h"
 #include "client/simulate_crash.h"

@@ -16,8 +16,6 @@
 
 #include <windows.h>
 
-// Must be after windows.h.
-#include <versionhelpers.h>
 #include <werapi.h>
 
 #include <signal.h>
@@ -34,7 +32,6 @@
 #include "base/strings/stringprintf.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/synchronization/lock.h"
-#include "build/build_config.h"
 #include "util/file/file_io.h"
 #include "util/misc/capture_context.h"
 #include "util/misc/from_pointer_cast.h"
@@ -880,7 +877,10 @@ void CrashpadClient::DumpAndCrash(EXCEPTION_POINTERS* exception_pointers) {
 bool CrashpadClient::DumpAndCrashTargetProcess(HANDLE process,
                                                HANDLE blame_thread,
                                                DWORD exception_code) {
-  if (!IsWindowsVistaOrGreater()) {
+  // Confirm we're on Vista or later.
+  const DWORD version = GetVersion();
+  const DWORD major_version = LOBYTE(LOWORD(version));
+  if (major_version < 6) {
     LOG(ERROR) << "unavailable before Vista";
     return false;
   }

@@ -511,7 +511,7 @@ bool CrashpadClient::SetHandlerMachPort(
     return false;
   }
 
-  exception_port_ = std::move(exception_port);
+  exception_port_.swap(exception_port);
   return true;
 }
 

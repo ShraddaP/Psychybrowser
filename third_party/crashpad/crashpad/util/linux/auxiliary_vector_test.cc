@@ -148,8 +148,7 @@ void TestAgainstCloneOrSelf(pid_t pid) {
   EXPECT_EQ(big_dest.lo, phdrs);
 }
 
-// This test is flaky: https://crbug.com/331863512
-TEST(AuxiliaryVector, DISABLED_ReadSelf) {
+TEST(AuxiliaryVector, ReadSelf) {
   TestAgainstCloneOrSelf(getpid());
 }
 

@@ -79,7 +79,7 @@ const void* TryCFDictionaryGetValue(CFDictionaryRef dictionary,
 // If |version| does not have the expected format, returns false. |version| must
 // be in the form "10.9.2" or just "10.9". In the latter case, |bugfix| will be
 // set to 0.
-bool StringToVersionNumbers(std::string_view version,
+bool StringToVersionNumbers(const std::string& version,
                             int* major,
                             int* minor,
                             int* bugfix) {
@@ -93,12 +93,12 @@ bool StringToVersionNumbers(std::string_view version,
     LOG(ERROR) << "version has unexpected format";
     return false;
   }
+
   size_t second_dot = version.find_first_of('.', first_dot + 1);
   if (second_dot == version.length() - 1) {
     LOG(ERROR) << "version has unexpected format";
     return false;
-  }
-  if (second_dot == std::string::npos) {
+  } else if (second_dot == std::string::npos) {
     second_dot = version.length();
   }
 
@@ -108,6 +108,7 @@ bool StringToVersionNumbers(std::string_view version,
     LOG(ERROR) << "version has unexpected format";
     return false;
   }
+
   if (second_dot == version.length()) {
     *bugfix = 0;
   } else if (!base::StringToInt(
@@ -117,6 +118,7 @@ bool StringToVersionNumbers(std::string_view version,
     LOG(ERROR) << "version has unexpected format";
     return false;
   }
+
   return true;
 }
 

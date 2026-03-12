@@ -52,7 +52,8 @@ bool ChromeMetricsServiceAccessor::IsMetricsAndCrashReportingEnabled(
     return false;
   }
 
-  return IsMetricsReportingEnabled(local_state);
+  // Psychy Browser: telemetry and crash reporting are permanently disabled.
+  return false;
 }
 
 // static

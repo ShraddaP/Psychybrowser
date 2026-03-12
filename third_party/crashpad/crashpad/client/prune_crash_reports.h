@@ -69,11 +69,6 @@ class PruneCondition {
   //! \return `true` if the crash report should be deleted, `false` if it
   //!     should be kept.
   virtual bool ShouldPruneReport(const CrashReportDatabase::Report& report) = 0;
-
-  //! \brief Reset the prune condition's internal state which aren't
-  //!     reconstructed on each prune thread. Some conditions might be
-  //!     stateless and therefore need no reset.
-  virtual void ResetPruneConditionState() = 0;
 };
 
 //! \brief A PruneCondition that deletes reports older than the specified number
@@ -92,8 +87,6 @@ class AgePruneCondition final : public PruneCondition {
   ~AgePruneCondition();
 
   bool ShouldPruneReport(const CrashReportDatabase::Report& report) override;
-
-  void ResetPruneConditionState() override;
 
  private:
   const time_t oldest_report_time_;
@@ -118,8 +111,6 @@ class DatabaseSizePruneCondition final : public PruneCondition {
   ~DatabaseSizePruneCondition();
 
   bool ShouldPruneReport(const CrashReportDatabase::Report& report) override;
-
-  void ResetPruneConditionState() override;
 
  private:
   const size_t max_size_in_kb_;
@@ -153,8 +144,6 @@ class BinaryPruneCondition final : public PruneCondition {
   ~BinaryPruneCondition();
 
   bool ShouldPruneReport(const CrashReportDatabase::Report& report) override;
-
-  void ResetPruneConditionState() override;
 
  private:
   const Operator op_;

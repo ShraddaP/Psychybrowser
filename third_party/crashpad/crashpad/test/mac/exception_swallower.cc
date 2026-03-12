@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <ostream>
 #include <string>
 
 #include "base/apple/scoped_mach_port.h"

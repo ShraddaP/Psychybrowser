@@ -209,8 +209,7 @@ void ReadLibcInTarget(ProcessType process,
   ExpectSymbol(&reader, "getpid", getpid_address);
 }
 
-// This test is flaky: https://crbug.com/331953012
-TEST(ElfImageReader, DISABLED_MainExecutableSelf) {
+TEST(ElfImageReader, MainExecutableSelf) {
   ReadThisExecutableInTarget(
       GetSelfProcess(),
       FromPointerCast<VMAddress>(ElfImageReaderTestExportedSymbol));

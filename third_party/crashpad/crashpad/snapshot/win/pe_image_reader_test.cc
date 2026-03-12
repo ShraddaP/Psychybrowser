@@ -14,8 +14,6 @@
 
 #include "snapshot/win/pe_image_reader.h"
 
-#include <versionhelpers.h>
-
 #ifndef PSAPI_VERSION
 #define PSAPI_VERSION 2
 #endif
@@ -117,7 +115,12 @@ void TestVSFixedFileInfo(ProcessReaderWin* process_reader,
 
   base::FilePath module_path(module.name);
 
-  if (IsWindows8OrGreater()) {
+  const DWORD version = GetVersion();
+  const int major_version = LOBYTE(LOWORD(version));
+  const int minor_version = HIBYTE(LOWORD(version));
+  if (major_version > 6 || (major_version == 6 && minor_version >= 2)) {
+    // Windows 8 or later.
+    //
     // Use BaseName() to ensure that GetModuleVersionAndType() finds the
     // already-loaded module with the specified name. Otherwise, dwFileVersionMS
     // may not match. This appears to be related to the changes made in Windows

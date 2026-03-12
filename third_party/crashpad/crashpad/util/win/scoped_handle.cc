@@ -14,8 +14,6 @@
 
 #include "util/win/scoped_handle.h"
 
-#include <ostream>
-
 #include "base/check.h"
 #include "util/file/file_io.h"
 

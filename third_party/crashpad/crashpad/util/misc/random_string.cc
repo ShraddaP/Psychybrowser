@@ -21,8 +21,7 @@ namespace crashpad {
 std::string RandomString() {
   std::string random_string;
   for (int index = 0; index < 16; ++index) {
-    random_string.append(1,
-                         static_cast<char>(base::RandIntInclusive('A', 'Z')));
+    random_string.append(1, static_cast<char>(base::RandInt('A', 'Z')));
   }
   return random_string;
 }

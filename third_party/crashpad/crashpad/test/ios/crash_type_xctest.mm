@@ -407,8 +407,7 @@ bool HasMacOSBrokeDYLDTaskInfo() {
 }
 #endif
 
-// TODO(crbug.com/416140624): The test is flaky. Enabled the test.
-- (void)DISABLED_testCrashWithAnnotations {
+- (void)testCrashWithAnnotations {
 #if TARGET_OS_SIMULATOR
   // This test will fail on <iOS17 simulators when running on macOS >=14.3 or
   // <iOS18 simulators when running on macOS >=15.4 due to a bug in Simulator.

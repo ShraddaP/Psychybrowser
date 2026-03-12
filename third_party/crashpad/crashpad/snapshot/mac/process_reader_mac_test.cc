@@ -642,7 +642,6 @@ TEST(ProcessReaderMac, ChildOneThread) {
   process_reader_threaded_child.Run();
 }
 
-// TODO(crbug.com/1319307): Test is failing on Mac. Re-enable it.
 TEST(ProcessReaderMac, ChildSeveralThreads) {
   constexpr size_t kChildThreads = 64;
   ProcessReaderThreadedChild process_reader_threaded_child(
@@ -1060,9 +1059,7 @@ class ProcessReaderModulesChild final : public MachMultiprocess {
   bool ensure_cl_kernels_success_;
 };
 
-// Disabled to investigate crbug.com/414919209.
-// TODO(crbug.com/414919209): Re-enable or remove if no longer relevant.
-TEST(ProcessReaderMac, DISABLED_ChildModules) {
+TEST(ProcessReaderMac, ChildModules) {
   ScopedOpenCLNoOpKernel ensure_cl_kernels;
   ASSERT_NO_FATAL_FAILURE(ensure_cl_kernels.SetUp());
 

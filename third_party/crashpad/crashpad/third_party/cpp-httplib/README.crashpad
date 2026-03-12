@@ -3,12 +3,10 @@ Short Name: cpp-httplib
 URL: https://github.com/yhirose/cpp-httplib
 Version: 0.27.0
 Revision: eacc1ca98e5fef25184c7d417e8417225e05e65d
-Update Mechanism: Manual
 License: MIT
 License File: cpp-httplib/LICENSE
-Security Critical: no
+Security Critical: no (test only)
 Shipped: no
-CPEPrefix: cpe:/a:cpp-httplib_project:cpp-httplib
 
 Description:
 A C++11 single-file header-only cross-platform HTTP/HTTPS library.
